@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ main program executable """
 
-import cmd, sys
+import cmd
 
 
 class HBNBCommand(cmd.Cmd):
