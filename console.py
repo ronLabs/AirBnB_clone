@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ main program executable """
 
-import cmd
+import cmd, sys
 
 
 class HBNBCommand(cmd.Cmd):
@@ -24,9 +24,6 @@ class HBNBCommand(cmd.Cmd):
     def help_EOF(self):
         """ eof help """
         print("Quit command to exit program:\n")
-
-    def do_create(self, arg):
-        
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
