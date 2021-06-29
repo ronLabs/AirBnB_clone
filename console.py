@@ -23,7 +23,7 @@ class HBNBCommand(cmd.Cmd):
 
     def help_EOF(self):
         """ eof help """
-        print("Quit command to exit program: cntrl + C\n")
+        print("Quit command to exit program:\n")
 
     def do_create(self, arg):
         
