@@ -2,6 +2,7 @@
 """ Unittests for BaseModel"""
 
 import unittest
+import pep8
 from datetime import datetime
 from models.base_model import BaseModel
 
@@ -13,8 +14,15 @@ class TestBaseModel(unittest.TestCase):
         """setup method"""
 
         self.base1 = BaseModel()
+        self.base2 = BaseModel()
         self.base1.name = "Lorem ipsum"
         self.base1.number = 777
+
+    def test_pep8(self):
+        """test pep8 format"""
+        pep8_style = pep8.StyleGuide(quiet=True)
+        result = pep8_style.check_files(['models/base_model.py'])
+        self.assertEqual(result.total_errors, 0, "Found code style errors.")
 
     def test_base_model(self):
         """test that the instatiation of a BaseModel"""
@@ -35,6 +43,16 @@ class TestBaseModel(unittest.TestCase):
 
         """test updated_at and created_at are the same for a new instance"""
         self.assertEqual(new_instance.updated_at, new_instance.created_at)
+
+    def test_dict_contents(self):
+        """test contents inside dictionary"""
+        self.assertTrue(getattr(self.base1, '__class__'))
+        self.assertTrue(getattr(self.base1, 'created_at'))
+        self.assertTrue(getattr(self.base1, 'updated_at'))
+        self.assertTrue(getattr(self.base1, 'id'))
+        with self.assertRaises(AttributeError):
+            getattr(self.base2, 'Hello')
+        self.assertTrue(getattr(self.base1, 'name'))
 
     def test_id(self):
         """ testing instance id """
