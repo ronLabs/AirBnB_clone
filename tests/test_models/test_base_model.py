@@ -15,7 +15,7 @@ class TestBaseModel(unittest.TestCase):
         self.base1 = BaseModel()
         self.base1.name = "Lorem ipsum"
         self.base1.number = 777
-    
+
     def test_id(self):
         """ testing instance id """
 
