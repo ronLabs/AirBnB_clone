@@ -7,11 +7,25 @@ from datetime import datetime
 class BaseModel():
     """definition class BaseModel"""
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """Initializes method"""
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = self.created_at
+        tformat = "%Y-%m-%dT%H:%M:%S.%f"
+        if kwargs:
+            for k, v in kwargs.items():
+                if k != '__class__':
+                    setattr(self, k, v)
+            if 'id' in kwargs.keys():
+                self.id = kwargs['id']
+            if 'created_at' in kwargs.keys():
+                self.created_at = datetime.strptime(
+                                           kwargs['created_at'], tformat)
+            if 'updated_at' in kwargs.keys():
+                self.updated_at = datetime.strptime(
+                                           kwargs['updated_at'], tformat)
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = self.created_at
 
     def __str__(self):
         """return format string"""

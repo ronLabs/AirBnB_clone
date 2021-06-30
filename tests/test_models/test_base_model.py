@@ -16,6 +16,26 @@ class TestBaseModel(unittest.TestCase):
         self.base1.name = "Lorem ipsum"
         self.base1.number = 777
 
+    def test_base_model(self):
+        """test that the instatiation of a BaseModel"""
+        new_instance = BaseModel()
+        new_instance_2 = BaseModel()
+
+        self.assertEqual(type(new_instance), BaseModel)
+
+        """test created_at, updated_at is a instance of type datetime"""
+        self.assertTrue(new_instance.created_at is not None)
+        self.assertEqual(type(new_instance.created_at), datetime)
+        self.assertTrue(new_instance.updated_at is not None)
+        self.assertEqual(type(new_instance.updated_at), datetime)
+
+        """test two BaseModel instances have different datetime objects"""
+        self.assertNotEqual(new_instance.created_at, new_instance_2.created_at)
+        self.assertNotEqual(new_instance.updated_at, new_instance_2.updated_at)
+
+        """test updated_at and created_at are the same for a new instance"""
+        self.assertEqual(new_instance.updated_at, new_instance.created_at)
+
     def test_id(self):
         """ testing instance id """
 
@@ -61,6 +81,13 @@ class TestBaseModel(unittest.TestCase):
 
         self.assertEqual(to_dict['name'], "Lorem ipsum")
         self.assertEqual(to_dict['number'], 777)
+        self.assertEqual(to_dict['__class__'], 'BaseModel')
+
+    def test_str(self):
+        """test the str method has the correct output"""
+        bm = BaseModel()
+        string = "[BaseModel] ({}) {}".format(bm.id, bm.__dict__)
+        self.assertEqual(string, str(bm))
 
 if __name__ == "__main__":
     """ if it's executed as main program """
