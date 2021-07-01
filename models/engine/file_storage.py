@@ -9,7 +9,6 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 import json
-import models
 
 
 class FileStorage():
@@ -27,24 +26,24 @@ class FileStorage():
     def new(self, obj):
         """sets objs in objs dictionary"""
         key = "{}.{}".format(obj.__class__.__name__, obj.id)
-        FileStorage.__objects[key] = obj
+        self.__objects[key] = obj
 
     def save(self):
         """serializes objects in dictionary"""
         new_dict = {}
-        for obj_id, obj in FileStorage.__objects.items():
+        for obj_id, obj in self.__objects.items():
             new_dict[obj_id] = obj.to_dict()
-        with open(FileStorage.__file_path, "w") as f:
+        with open(self.__file_path, "w", encoding='utf-8') as f:
             json.dump(new_dict, f)
 
     def reload(self):
         """deserializes the JSON file in dictionary"""
         try:
-            with open(FileStorage.__file_path, 'r', encoding='utf-8') as f:
+            with open(self.__file_path, 'r', encoding='utf-8') as f:
                 dictss = json.load(f)
             for k, v in dictss.items():
                 class_name = k.split(".")[0]
-                if class_name in FileStorage.__cls_name:
+                if class_name in self.__cls_name:
                     self.__objects[k] = self.__cls_name[class_name](**v)
         except FileNotFoundError:
             pass
