@@ -82,7 +82,7 @@ class TestBaseModel(unittest.TestCase):
         """ testing if the update_at attribute is from datetime type """
         self.assertIsInstance(self.base1.updated_at, datetime)
         self.assertIsInstance(new_instance.updated_at, datetime)
-        self.assertNotEqual(new_instance, old_newInstance)
+        self.assertNotEqual(new_instance.updated_at, old_newInstance)
         self.assertNotEqual(self.base1.created_at, self.base1.updated_at)
 
     def test_to_dict(self):
