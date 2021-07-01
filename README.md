@@ -16,7 +16,7 @@ This repository contains the files for Holberton's **AirBnB clone project**. A c
     $ cd AirBnB_clone
     $ ./console.py
 
-### COMMANDS CMD
+### Commands CMD
 
 | Command | Simple Usage             |
 | ------- | ------------------------ |
@@ -28,13 +28,61 @@ This repository contains the files for Holberton's **AirBnB clone project**. A c
 | Update  | Update objects           |
 | Destroy | Destroy Objects          |
 
-# How to Use Console
+## How to Use it
+**interactive mode**
+```
+$ ./console.py
+(hbnb) help
 
-Run program and show prompt with help command.
+Documented commands (type help <topic>):
+========================================
+EOF  help  quit
 
+(hbnb)
+(hbnb)
+(hbnb) quit
+$
+```
+**non-interactive mode**
+```
+$ echo "help" | ./console.py
+(hbnb)
 
+Documented commands (type help <topic>):
+========================================
+EOF  help  quit
+(hbnb)
+$
+$ cat test_help
+help
+$
+$ cat test_help | ./console.py
+(hbnb)
+
+Documented commands (type help <topic>):
+========================================
+EOF  help  quit
+(hbnb)
+$
+```
+
+## Examples
+```
+(hbnb) create BaseModel
+3db5387d-2fd6-494e-9b95-e5a62790c1fd
+(hbnb) show BaseModel 2013187e-1bc9-4f8f-b0ae-8088e6a2ee43
+[BaseModel] (3db5387d-2fd6-494e-9b95-e5a62790c1fd) {'created_at': datetime.datetime(2018, 11, 15, 3, 3, 56, 358245), 'updated_at': datetime.datetime(2018, 11, 15, 3, 3, 56, 358274), 'id': '3db5387d-2fd6-494e-9b95-e5a62790c1fd'}
+(hbnb) update BaseModel 3db5387d-2fd6-494e-9b95-e5a62790c1fd name "Betty"
+(hbnb) show BaseModel 3db5387d-2fd6-494e-9b95-e5a62790c1fd
+[BaseModel] (3db5387d-2fd6-494e-9b95-e5a62790c1fd) {'created_at': datetime.datetime(2018, 11, 15, 3, 3, 56, 358245, 'updated_at': datetime.datetime(2018, 11, 15, 3, 3, 56, 358274), 'id': '3db5387d-2fd6-494e-9b95-e5a62790c1fd', 'name': "Betty"}
+(hbnb) destroy BaseModel 3db5387d-2fd6-494e-9b95-e5a62790c1fd
+(hbnb) show BaseModel 3db5387d-2fd6-494e-9b95-e5a62790c1fd
+** no instance found **
+(hbnb)
+
+```
 
 # AUTHORS
-Melisa Rojas
-Ronald Altamirano
+* Melisa Rojas
+* Ronald Altamirano
 
