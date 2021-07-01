@@ -5,6 +5,7 @@ import unittest
 import pep8
 from datetime import datetime
 from models.base_model import BaseModel
+import time
 
 
 class TestBaseModel(unittest.TestCase):
@@ -76,11 +77,14 @@ class TestBaseModel(unittest.TestCase):
         new_instance = BaseModel()
 
         self.base1.save()
+        old_newInstance = new_instance.updated_at
+        time.sleep(2)
         new_instance.save()
 
         """ testing if the update_at attribute is from datetime type """
         self.assertIsInstance(self.base1.updated_at, datetime)
         self.assertIsInstance(new_instance.updated_at, datetime)
+        self.assertNotEqual(new_instance, old_newInstance)
 
     def test_to_dict(self):
         """ testing to_dict method from BaseModel class """
