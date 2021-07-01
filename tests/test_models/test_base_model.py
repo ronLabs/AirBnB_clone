@@ -72,10 +72,8 @@ class TestBaseModel(unittest.TestCase):
 
     def test_save(self):
         """ testing save method from BaseModel """
-
         new_instance = BaseModel()
 
-        self.base1.save()
         new_instance.save()
 
         """ testing if the update_at attribute is from datetime type """
@@ -106,6 +104,13 @@ class TestBaseModel(unittest.TestCase):
         bm = BaseModel()
         string = "[BaseModel] ({}) {}".format(bm.id, bm.__dict__)
         self.assertEqual(string, str(bm))
+
+    def test_kwargs(self):
+        """ test kwargs init """
+        bm = BaseModel()
+        bm1 = BaseModel(**bm.to_dict())
+        self.assertEqual(bm.to_dict(), bm1.to_dict())
+        self.assertNotEqual(bm, bm1)
 
 if __name__ == "__main__":
     """ if it's executed as main program """
