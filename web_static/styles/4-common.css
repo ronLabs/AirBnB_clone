@@ -8,3 +8,9 @@ body {
     margin:30px auto;
     max-width:1000px;
     }
+
+/* FIX THE OVERLAPPING OF FOOTER WITH ARTICLES */
+html{
+    position: relative;
+    min-height: 100%;
+    }
